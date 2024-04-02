@@ -18,9 +18,25 @@
 # Overview
 
 ```mermaid
-graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;
+flowchart LR
+    subgraph "Client-Side"
+        webclient(Web Client)
+    end
+
+    subgraph "Server-Side"
+        server(Server)
+    end
+
+    subgraph "Compute Clients"
+        compute1(Compute Client 1)
+        compute2(Compute Client 2)
+        compute3(Compute Client 3)
+    end
+
+    webclient -->|Sends Hash| server
+    server -->|Distributes Tasks| compute1
+    compute1 -->|Tests Hashes| server
+
+    server -->|Sends Results| webclient
+
 ```
