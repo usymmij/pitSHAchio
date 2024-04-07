@@ -1,7 +1,6 @@
-#include "socket.h"
 #include <iostream>
-#include <stdlib.h>
-#include <time.h>
+#include <string>
+#include "socket.h"
 
 int main(void)
 {
@@ -9,40 +8,46 @@ int main(void)
     {
         Socket theSocket("127.0.0.1", 2000);
         theSocket.Open();
-        std::string entry = "";
-        while (entry != "done")
+        std::string message = "";
+
+        while (message != "done")
         {
-            std::cout << "Enter a string to send: ";
-            std::cin >> entry;
-            ByteArray ba(entry);
+            std::cout << "Enter a message to send (type 'done' to exit): ";
+            std::getline(std::cin, message);
+
+            ByteArray ba(message);
             int written = theSocket.Write(ba);
-            if ( written != ba.v.size())
+
+            if (written != ba.v.size())
             {
-                std::cout << "Wrote: " << written << std::endl;
                 std::cout << "The socket appears to have been closed" << std::endl;
                 break;
             }
             else
             {
-                std::cout << "Sent: " << entry << std::endl;
+                std::cout << "Sent: " << message << std::endl;
             }
-            if (theSocket.Read(ba) <=0)
+
+            if (theSocket.Read(ba) <= 0)
             {
                 std::cout << "The socket appears to have been closed" << std::endl;
                 break;
             }
+
             std::cout << "Received: " << ba.ToString() << std::endl;
         }
-        std::cout << "Sleep now" << std::endl;
+
+        std::cout << "Exiting client program." << std::endl;
         theSocket.Close();
     }
-    catch(std::string s)
+    catch (std::string s)
     {
         std::cout << s << std::endl;
     }
-    catch(...)
+    catch (...)
     {
         std::cout << "Caught unexpected exception" << std::endl;
     }
 
+    return 0;
 }
