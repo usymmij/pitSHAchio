@@ -1,3 +1,7 @@
+
+export default function Index() {
+return 
+<>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -68,12 +72,11 @@
         the community to enhance its capabilities and performance.
       </p>
       <p>
-        PitSHAchio supports various features such as
-        <em>distributed computing</em>, <u>parallel processing</u>, and
-        <abbr title="Secure Hash Algorithm">SHA-256</abbr> hashing. It also
+        PitSHAchio uses
+        distributed computing to brute force SHA-256 hashes. It also
         provides a <mark>user-friendly interface</mark> for ease of use and
         integration into existing security workflows. With PitSHAchio, users can
-        <del>efficiently</del> test and analyze password hashes to identify
+        test and analyze password hashes to identify
         vulnerabilities and improve overall security measures.
       </p>
     </div>
@@ -100,3 +103,6 @@
     </script>
   </body>
 </html>
+<>
+
+} 
