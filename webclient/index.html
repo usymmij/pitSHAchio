@@ -86,6 +86,16 @@
 
         const hashResult = document.getElementById("hashResult");
         hashResult.innerHTML = `Hashed Password: ${hashedPassword}`;
+
+        //use TCP & send the hashed password
+        const socket = new WebSocket("ws://your-server-address:port");
+        socket.onopen = function () {
+          socket.send(hashedPassword);
+        };
+        socket.onmessage = function (event) {
+          hashResult.innerHTML = `Cracked Password: ${event.data}`;
+          socket.close();
+        };
       }
     </script>
   </body>
