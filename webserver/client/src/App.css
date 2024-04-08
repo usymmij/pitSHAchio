@@ -10,3 +10,8 @@
     margin-top: 5%;
     margin-bottom: 5%;
 }
+
+.spacer {
+    min-width: 100%;
+    min-height: 200px;
+}

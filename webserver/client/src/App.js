@@ -1,4 +1,4 @@
-import logo from './pistashio.png';
+import logo from './pistachio.png';
 import { useState } from 'react';
 var sha256 = require('js-sha256').sha256;
 
@@ -21,24 +21,47 @@ function App() {
       console.log('valid hash')
       setWarning('')
       setStatus('Calculating ... \n\n\n')
+
+      fetch('/api', {
+        method: "PUT",
+        headers: {
+          "Content-Type": "text/plain"
+        },
+        body: hash
+      })
+
+        .then((res) => {
+          if (res.status !== 200) {
+            console.log('Server Error')
+            setStatus("Server Connection Error")
+            return;
+          }
+          res.text().then(pws => {
+            console.log(pws)
+          })
+        })
+
+        .catch(err => {
+          console.log(err)
+        })
     } else {
       setWarning('invalid hash')
     }
   }
 
   return (
-    <>
-      <div className="wrapper">
-        <div className="container">
-          <div className="center">
-            <img src={logo} alt="Pistashio Logo" className="logo-img" />
-          </div>
+    <div className="wrapper" >
+      <br />
+      <br />
+
+      <div className="container" >
+        <h1>PitSHAchio</h1>
+        <br />
 
 
-          <div className="spacer"></div>
-          <h1>PitSHAchio</h1>
+        <div style={{ backgroundImage: `url(${logo})`, backgroundSize: 'contain', backgroundPosition: 'center' }}>
 
-          <h2 style={{ fontSize:"25px"}}>Please enter a hash to crack, or convert a password to one first</h2>
+          <h2 style={{ fontSize: "25px" }}>Please enter a hash to crack, or convert a password to one first</h2>
           <form
             id="password"
             action=""
@@ -65,7 +88,7 @@ function App() {
             <input
               id="hashResult"
               type="text"
-              value={hash}
+              value={hash || ""}
               onChange={(e) => { setHash(e.target.value) }}
               pattern="[a-f0-9]{64}"
               title="Please input a 64 digit hexadecimal"
@@ -74,11 +97,14 @@ function App() {
 
             <input type="submit" value="submit hash" ></input>
           </form>
-          <div style={{ color: 'red', fontSize:"25px"}}>{warning}</div>
-          <div style={{ fontSize:"25px"}}>{status}</div>
-          <br/>
         </div>
+
+        <div style={{ color: 'red', fontSize: "25px" }}>{warning}</div>
+        <div style={{ fontSize: "25px" }}>{status}</div>
       </div>
+
+      <br />
+      <br />
 
       <div className="container about-section">
         <h2>About PitSHAchio</h2>
@@ -106,9 +132,32 @@ function App() {
           test and analyze password hashes to identify
           vulnerabilities and improve overall security measures.
         </p>
+
+        <input
+          type="button"
+          value="shutdown server"
+          style={{backgroundColor: "#de1919"}}
+          onClick={
+            () => {
+              fetch('/api', {
+                method: "PUT",
+                headers: {
+                  "Content-Type": "text/plain"
+                },
+                body: "terminate"
+              })
+            }
+          }></input>
+
+        <br />
+        <p style={{ fontSize: '15px' }}>image source: &nbsp;
+          <a href='https://jp.freepik.com/premium-photo/a-group-of-pistachio-nuts_50221300.htm'>
+            https://jp.freepik.com/premium-photo/a-group-of-pistachio-nuts_50221300.htm</a>
+        </p>
       </div>
 
-    </>
+
+    </div>
   );
 }
 
