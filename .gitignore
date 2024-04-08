@@ -2,3 +2,4 @@ notes
 build
 computeserver/CMakeLists.txt
 lab3
+*/node_modules

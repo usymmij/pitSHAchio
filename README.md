@@ -22,14 +22,30 @@ The primary goal of PitSHAchio is to crack password hashes efficiently through d
 
 ## Usage
 
-1. Start the server using the provided C++ executable.
-2. Access the web-based UI provided by the main client.
-3. Enter a password to be hashed and cracked.
-4. View the results and potential password matches provided by the server.
+1. Start the web server
+```bash
+cd webserver
+npm run build
+npm run start & disown
+```
+2. Start the comput server using the provided C++ executable.
+```bash
+cd ../computeclient
+./ComputeServer & disown
+```
+3. Access the web-based UI provided by the webserver at port 3000
+4. Enter a hash to be reversed, or use the passworder converter to get a hash first.
+5. View the results and potential password matches provided by the server.
 
 ## Dependencies
 
-Node.js for the main client
-C++ compiler for building and running the server 
+- Node.js
+  - express
+  - js-sha256
+  - net
+  - react
+- g++
+
+
 
 
