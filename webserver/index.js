@@ -12,16 +12,18 @@ app.use(bodyParser.text());
 app.put('/api', (req, res) => {
   let hash = req.body;
 
-  const socket = net.createConnection({ port: 3030}, () => {
+  const socket = net.createConnection({ port: 3030 }, () => {
     console.log('connected')
-    socket.write(hash, () => {
-      console.log(hash)
-      console.log('sent data')
-    });
+
     socket.on('data', (pws) => {
-      console.log(pws)
-      res.status(200).send(JSON.stringify(pws))
+      console.log('response received');
+      console.log(pws.toString())
+      res.status(200).send(pws)
+      socket.destroy();
     })
+    socket.write(hash, () => {
+      console.log('sent data');
+    });
   });
   socket.on('error', (e) => {
     console.error(e)

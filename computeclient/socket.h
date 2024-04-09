@@ -8,6 +8,9 @@
 #include <arpa/inet.h>
 #include <sys/types.h>
 
+#include "Blockable.h"
+namespace Sync{
+	
 class ByteArray
 {
 public:
@@ -33,12 +36,12 @@ public:
     }
 };
 
-class Socket
+class Socket : public Blockable
 {
 private:
     sockaddr_in socketDescriptor;
-    int socketFD;
     bool open;
+    Event terminator;
 public:
     Socket(std::string const & ipAddress, unsigned int port);
     Socket(int socketFD);
@@ -51,5 +54,5 @@ public:
     int Read(ByteArray & buffer);
     void Close(void);
 };
-
+};
 #endif // SOCKET_H

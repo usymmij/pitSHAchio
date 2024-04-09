@@ -3,6 +3,9 @@
 #include "socket.h"
 #include "Blockable.h"
 
-void run_IPC(Sync::ByteArray* hex, Sync::ThreadSem sem, Sync::SocketServer main);
+void run_IPC(
+    Sync::ByteArray *hex, Sync::ThreadSem *sem, Sync::SocketServer *mainServer, bool* ready,
+    Sync::ByteArray *ans);
+
 
 #endif

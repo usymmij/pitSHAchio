@@ -45,7 +45,7 @@ cd ../computeclient
   - net
   - react
 - g++
-
+  - openssl
 
 
 

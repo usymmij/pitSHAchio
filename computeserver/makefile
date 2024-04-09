@@ -1,8 +1,8 @@
 ComputeServer: ComputeServer.cpp socket.o socketserver.o Blockable.o IPCServer.o
 	g++ -o ComputeServer ComputeServer.cpp IPCServer.o socket.o Blockable.o socketserver.o -std=c++11
 
-IPCServer.o: Blockable.o socket.o IPCServer.cpp
-	g++ -c IPCServer.o IPCServer.cpp socket.o Blockable.o socketserver.o -std=c++11
+IPCServer.o: Blockable.h socket.h IPCServer.cpp IPCServer.h
+	g++ -c IPCServer.cpp socket.h Blockable.h socketserver.h -std=c++11
 
 IPCsocket.o: IPCsocket.h IPCsocket.cpp
 	g++ -c IPCsocket.cpp -std=c++11
