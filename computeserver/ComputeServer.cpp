@@ -112,7 +112,7 @@ void socketReply(Sync::Socket s)
                 clientCount = std::string(100, '0');
             }
 
-            if (clientCount.length() > 6 || !newHashReady)
+            if (clientCount.length() > 1 || !newHashReady)
             {
                 // computations complete
                 readSem.Wait();

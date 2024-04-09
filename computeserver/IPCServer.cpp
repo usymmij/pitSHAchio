@@ -49,7 +49,7 @@ void handleResponse(Sync::Socket socket, Sync::ByteArray *hex, Sync::ThreadSem *
         }
         else
         {
-            Sync::ByteArray response({(char)10});
+            Sync::ByteArray response(".");
             socket.Write(response);
         }
 

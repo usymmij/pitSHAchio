@@ -38,6 +38,12 @@ function App() {
           }
           res.text().then(pws => {
             console.log(pws)
+            if(pws.includes(".")) {
+              console.log('dsa')
+              setStatus("Password Too Long :(");
+              return;
+            }
+            setStatus("Password Cracked: " + pws);
           })
         })
 
