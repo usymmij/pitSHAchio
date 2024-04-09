@@ -47,13 +47,17 @@ char intToHex(int x)
     return y;
 }
 
-int main(void)
+int main(int argc, char* argv[])
 {
+    std::string ip = "127.0.0.1";
+    if(argc > 1) {
+        ip = argv[1];
+    } 
     try
     {
         for (;;)
         {
-            Sync::Socket socket("127.0.0.1", 3010);
+            Sync::Socket socket(ip, 3010);
             Sync::ByteArray message;
             socket.Open();
 
