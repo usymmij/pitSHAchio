@@ -28,14 +28,21 @@ cd webserver
 npm run build
 npm run start & disown
 ```
-2. Start the comput server using the provided C++ executable.
+2. Start the compute server using the provided C++ executable.
 ```bash
-cd ../computeclient
+cd ../computeserver
 ./ComputeServer & disown
 ```
-3. Access the web-based UI provided by the webserver at port 3000
-4. Enter a hash to be reversed, or use the passworder converter to get a hash first.
-5. View the results and potential password matches provided by the server.
+3. Make sure there is at least one compute client
+```bash
+cd  ../computeclient
+./Client
+```
+  - if you are running the client on a different device, please provide the IP address of the server
+  - `./Client 1.2.3.4`
+4. Access the web-based UI provided by the webserver at port 3000
+5. Enter a hash to be reversed, or use the passworder converter to get a hash first.
+6. View the results and potential password match provided by the server.
 
 ## Dependencies
 
